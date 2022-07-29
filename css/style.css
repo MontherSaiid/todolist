@@ -1,0 +1,170 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-clr: #0099BB;
+    --text-clr: #485C6B;
+    --bg-clr: #E5E5E5;
+    --font-default: 'Roboto', sans-serif;
+    font-family: var(--font-default);
+}
+
+.container {
+    width: 700px;
+    margin: 5% auto;
+    background-color: var(--bg-clr);
+    padding: 15px
+}
+
+.first__title {
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--text-clr);
+}
+
+.seconde__title {
+    text-transform: capitalize;
+    border-bottom: 2px dotted var(--main-clr);
+    width: max-content;
+    margin-bottom: 15px;
+    color: var(--text-clr);
+    margin: 12px 0 12px 8%;
+    font-size: 1.1rem;
+
+}
+
+form {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.task__input {
+    width: 400px;
+    padding: 12px;
+    border: none;
+    border-radius: 100px;
+}
+
+.btn__add {
+    width: 120px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: var(--main-clr);
+    color: var(--bg-clr);
+}
+
+.display__title {
+    border-top: 2px solid var(--main-clr);
+    width: max-content;
+    padding: 5px 0;
+    text-transform: capitalize;
+    margin: 12px 0 0 8%;
+    font-size: 1.2rem;
+    color: var(--text-clr);
+
+}
+
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5%;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn {
+    width: 100px;
+    padding: 9px;
+    border-radius: 100px;
+    border: 1px solid #ccc;
+    text-transform: capitalize;
+    color: var(--bg-clr);
+    cursor: pointer;
+}
+
+.btn__done {
+    background-color: var(--main-clr);
+    margin-right: 5px;
+}
+
+.btn__delete {
+    background-color: #A63F1C;
+}
+
+.name__task {
+    text-transform: capitalize;
+    font-size: 1rem;
+    color: var(--text-clr);
+}
+
+.line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--main-clr);
+    margin-top: -2px;
+}
+
+.error {
+    text-align: center;
+    display: block;
+    font-size: 2rem;
+    text-transform: capitalize;
+    margin-top: 2%;
+    color: var(--main-clr);
+}
+
+@media(max-width: 676px) {
+    .container {
+        width: 93%;
+    }
+
+    .first__title {
+        margin-bottom: 6%;
+    }
+
+    .seconde__title {
+        font-size: 13px;
+        margin: 3px 16px;
+    }
+
+    .display__title {
+        font-size: 16px;
+        margin: 0 0 0 16px;
+    }
+
+    form {
+        flex-direction: column;
+
+    }
+
+    .task__input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .btn__add {
+        padding: 10px;
+    }
+}
+
+@media(min-width: 700px) {
+    .first__title {
+        margin-bottom: 0;
+    }
+
+    .display__title {
+        margin: 0 0 0 8%;
+    }
+
+}
