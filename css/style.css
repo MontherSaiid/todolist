@@ -86,19 +86,24 @@ form {
     width: 100px;
     padding: 9px;
     border-radius: 100px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--main-clr);
     text-transform: capitalize;
-    color: var(--bg-clr);
+    color: var(--text-clr);
     cursor: pointer;
+    font-weight: bold;
 }
 
 .btn__done {
     background-color: var(--main-clr);
     margin-right: 5px;
+    color: var(--bg-clr);
+
 }
 
 .btn__delete {
     background-color: #A63F1C;
+    border: none;
+    color: var(--bg-clr);
 }
 
 .name__task {
@@ -123,6 +128,19 @@ form {
     margin-top: 2%;
     color: var(--main-clr);
 }
+
+.undo {
+    background-color: var(--bg-clr);
+    margin-right: 5px;
+    border: 2px solid var(--main-clr);
+    color: var(--text-clr);
+}
+
+.thro {
+    text-decoration: line-through;
+}
+
+
 
 @media(max-width: 676px) {
     .container {
