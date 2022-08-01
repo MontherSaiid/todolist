@@ -136,3 +136,11 @@ btnClear.addEventListener('click', function (e) {
     }
 
 });
+
+checkTask.addEventListener('click', function () {
+    if (checkTask.checked) {
+        nameTask.classList.add('thro');
+    } else {
+        nameTask.classList.remove('thro');
+    }
+});
