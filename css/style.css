@@ -91,13 +91,13 @@ form {
     color: var(--text-clr);
     cursor: pointer;
     font-weight: bold;
+    text-transform: capitalize;
 }
 
 .btn__done {
     background-color: var(--main-clr);
     margin-right: 5px;
     color: var(--bg-clr);
-
 }
 
 .btn__delete {
@@ -139,8 +139,6 @@ form {
 .thro {
     text-decoration: line-through;
 }
-
-
 
 @media(max-width: 676px) {
     .container {

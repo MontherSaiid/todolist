@@ -52,7 +52,7 @@ display.addEventListener('click', function (e) {
             nameTask.classList.toggle('thro');
         }
         // change the name of the buttons
-        e.target.innerHTML === 'done' ? e.target.innerHTML = 'undo' : e.target.innerHTML = 'done';
+        e.target.innerHTML == 'Done' ? e.target.innerHTML = 'Undo' : e.target.innerHTML = 'Done';
     }
 });
 
@@ -84,10 +84,10 @@ function createElements(allTasks) {
         row.setAttribute('data-id', task.id);
         // create the column
         row.innerHTML = `
-        <h2 class="nametask" data-id=${task.id}>${task.taskTitle}${task.id}</h2>
+        <h2 class="nametask" data-id=${task.id}>${task.taskTitle}</h2>
         <div class="buttons">
-            <button class="ddBtn btn btn__done" data-id=${task.id}>${task.id}done</button>
-            <button class="ddBtn btn btn__delete" data-id=${task.id}>${task.id}delete</button>
+            <button class="btn btn__done" data-id=${task.id}>Done</button>
+            <button class="btn btn__delete" data-id=${task.id}>Delete</button>
         </div>`;
         // display error message
         showError.style.display = 'none';
