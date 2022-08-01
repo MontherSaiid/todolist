@@ -137,10 +137,12 @@ btnClear.addEventListener('click', function (e) {
 
 });
 
-checkTask.addEventListener('click', function () {
-    if (checkTask.checked) {
-        nameTask.classList.add('thro');
-    } else {
-        nameTask.classList.remove('thro');
-    }
-});
+if (arrayTasks.length > 0) {
+    checkTask.addEventListener('click', function () {
+        if (checkTask.checked) {
+            nameTask.classList.add('thro');
+        } else {
+            nameTask.classList.remove('thro');
+        }
+    });
+}
