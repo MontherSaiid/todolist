@@ -122,6 +122,7 @@ function removeTask(id) {
     saveData(arrayTasks);
 }
 
+// clear all the tasks
 btnClear.addEventListener('click', function (e) {
     e.preventDefault();
     if (arrayTasks.length > 0) {
@@ -138,6 +139,7 @@ btnClear.addEventListener('click', function (e) {
 });
 
 if (arrayTasks.length > 0) {
+    // check if the task is checked
     checkTask.addEventListener('click', function () {
         if (checkTask.checked) {
             nameTask.classList.add('thro');
