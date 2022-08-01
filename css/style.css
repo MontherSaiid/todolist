@@ -33,7 +33,7 @@
     width: max-content;
     margin-bottom: 15px;
     color: var(--text-clr);
-    margin: 12px 0 12px 8%;
+    margin: 12px 0 12px 4%;
     font-size: 1.1rem;
 
 }
@@ -46,19 +46,27 @@ form {
 }
 
 .task__input {
-    width: 400px;
+    width: 430px;
     padding: 12px;
     border: none;
     border-radius: 100px;
 }
 
-.btn__add {
-    width: 120px;
+.btn__main {
+    width: 100px;
     border: none;
     border-radius: 100px;
     cursor: pointer;
     font-weight: bold;
+}
+
+.btn__add--update {
     background-color: var(--main-clr);
+    color: var(--bg-clr);
+}
+
+.btn__clear--update {
+    background-color: #d92525cc;
     color: var(--bg-clr);
 }
 
@@ -73,6 +81,9 @@ form {
 
 }
 
+.textTask {
+    display: flex;
+}
 
 .row {
     display: flex;
@@ -101,7 +112,7 @@ form {
 }
 
 .btn__delete {
-    background-color: #A63F1C;
+    background-color: #d92525cc;
     border: none;
     color: var(--bg-clr);
 }
@@ -110,6 +121,7 @@ form {
     text-transform: capitalize;
     font-size: 1rem;
     color: var(--text-clr);
+    margin-left: 3px;
 }
 
 .line {
@@ -180,7 +192,7 @@ form {
     }
 
     .display__title {
-        margin: 0 0 0 8%;
+        margin: 0 0 0 4%;
     }
 
 }

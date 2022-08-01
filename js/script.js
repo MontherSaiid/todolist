@@ -1,6 +1,7 @@
 
 let taskInput = document.querySelector('.task__input');
 let btnAdd = document.querySelector('.btn__add');
+let btnClear = document.querySelector('.btn__clear');
 let display = document.querySelector('.display');
 let showError = document.querySelector('.error');
 
@@ -29,17 +30,21 @@ btnAdd.addEventListener('click', function (e) {
 });
 
 let nameTask = document.querySelector('.nametask');
+let checkTask = document.querySelector('.checkTask');
 
 display.addEventListener('click', function (e) {
     //hold the id if the button is clicked
     let id = e.target.parentElement.parentElement.getAttribute('data-id');
     if (e.target.classList.contains('btn__delete')) {
-        // check if there class thro to delete it
-        if (nameTask.classList.contains('thro')) {
-            // remove task from localStorage
-            removeTask(id);
-            // remove task from page
-            e.target.parentElement.parentElement.remove();
+        let ok = confirm('Are you sure you want to delete this task?');
+        if (ok) {
+            // check if there class thro to delete it
+            if (nameTask.classList.contains('thro') && checkTask.checked) {
+                // remove task from localStorage
+                removeTask(id);
+                // remove task from page
+                e.target.parentElement.parentElement.remove();
+            }
         }
     }
 
@@ -47,7 +52,7 @@ display.addEventListener('click', function (e) {
         // toggle the class to change the text of the button
         e.target.classList.toggle('undo');
         // get the id of the name task
-        if (nameTask.parentElement.getAttribute('data-id') == id) {
+        if (nameTask.parentElement.parentElement.getAttribute('data-id') == id) {
             // toggle the class to change the color
             nameTask.classList.toggle('thro');
         }
@@ -84,7 +89,10 @@ function createElements(allTasks) {
         row.setAttribute('data-id', task.id);
         // create the column
         row.innerHTML = `
-        <h2 class="nametask" data-id=${task.id}>${task.taskTitle}</h2>
+        <div class="textTask">
+            <input type="checkbox" name="Male" class="checkTask" />
+            <h2 class="nametask" data-id=${task.id}>${task.taskTitle}</h2>
+        </div>
         <div class="buttons">
             <button class="btn btn__done" data-id=${task.id}>Done</button>
             <button class="btn btn__delete" data-id=${task.id}>Delete</button>
@@ -113,3 +121,18 @@ function removeTask(id) {
     arrayTasks = arrayTasks.filter((task) => task.id != id);
     saveData(arrayTasks);
 }
+
+btnClear.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (arrayTasks.length > 0) {
+        if (checkTask.checked) {
+            // remove all tasks from localStorage
+            localStorage.removeItem('tasks');
+            // remove all tasks from page
+            display.innerHTML = '';
+            // reload for the page
+            location.reload();
+        }
+    }
+
+});
