@@ -106,7 +106,7 @@ form {
     color: var(--bg-clr);
 }
 
-.name__task {
+.nametask {
     text-transform: capitalize;
     font-size: 1rem;
     color: var(--text-clr);

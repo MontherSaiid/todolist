@@ -17,11 +17,11 @@ if (localStorage.getItem('tasks')) {
     arrayTasks = JSON.parse(localStorage.getItem('tasks'));
 }
 
-
 // Add task
 btnAdd.addEventListener('click', function (e) {
     // remove reload from window
     e.preventDefault();
+    // check if th input not empty and length is letter than or equal 50
     if (taskInput.value !== '' && taskInput.value.length <= 50) {
         addTask(taskInput.value);
         taskInput.value = '';
@@ -41,17 +41,18 @@ display.addEventListener('click', function (e) {
             // remove task from page
             e.target.parentElement.parentElement.remove();
         }
-
     }
 
     if (e.target.classList.contains('btn__done')) {
+        // toggle the class to change the text of the button
         e.target.classList.toggle('undo');
+        // get the id of the name task
         if (nameTask.parentElement.getAttribute('data-id') == id) {
+            // toggle the class to change the color
             nameTask.classList.toggle('thro');
         }
-
+        // change the name of the buttons
         e.target.innerHTML === 'done' ? e.target.innerHTML = 'undo' : e.target.innerHTML = 'done';
-
     }
 });
 
@@ -60,7 +61,6 @@ function addTask(task) {
     let allData = {
         id: Math.floor(Math.random() * 100),
         taskTitle: task,
-
     };
 
     // add the data to the array
@@ -73,22 +73,23 @@ function addTask(task) {
     location.reload();
 }
 
-
 function createElements(allTasks) {
+    // empty display content to void the repeated tasks
     display.innerHTML = '';
     // create the row
     allTasks.forEach(task => {
+        // declare the div
         let row = document.createElement('div');
         row.classList.add('row');
         row.setAttribute('data-id', task.id);
-
+        // create the column
         row.innerHTML = `
-        <h2 class="nametask" data-id=${task.id}>${task.taskTitle}</h2>
-        <div>
-            <button class="btn btn__done" data-id=${task.id}>done</button>
-            <button class="btn btn__delete" data-id=${task.id}>delete</button>
+        <h2 class="nametask" data-id=${task.id}>${task.taskTitle}${task.id}</h2>
+        <div class="buttons">
+            <button class="ddBtn btn btn__done" data-id=${task.id}>${task.id}done</button>
+            <button class="ddBtn btn btn__delete" data-id=${task.id}>${task.id}delete</button>
         </div>`;
-
+        // display error message
         showError.style.display = 'none';
         // append the row to the display
         display.appendChild(row);
@@ -108,9 +109,7 @@ function getData() {
     showError.style.display = 'block';
 }
 
-
 function removeTask(id) {
     arrayTasks = arrayTasks.filter((task) => task.id != id);
     saveData(arrayTasks);
-
 }
