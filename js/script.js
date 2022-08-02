@@ -17,26 +17,28 @@ if (localStorage.getItem('tasks')) {
 
 // Add task
 btnAdd.addEventListener('click', function (e) {
+    let valInput = taskInput.value.trim();
     // remove reload from window
     e.preventDefault();
     // check if th input not empty and length is letter than or equal 50
-    if (taskInput.value !== '' && taskInput.value !== ' ' && taskInput.value.length <= 50) {
+    if (valInput !== '' && valInput.length <= 50) {
         addTask(taskInput.value);
         taskInput.value = '';
     }
-    // showError.style.display = 'block';
 });
 
 let nameTask = document.querySelector('.nametask');
 let checkTask = document.querySelector('.checkTask');
+let btns = document.querySelector('.row .buttons');
 
 display.addEventListener('click', function (e) {
+    console.log(checkTask.checked)
     //hold the id if the button is clicked
     let id = e.target.parentElement.parentElement.getAttribute('data-id');
     if (e.target.classList.contains('btn__delete')) {
         let ok = confirm('Are you sure you want to delete this task?');
         if (ok) {
-            // check if there class thro to delete it
+            // check if there class thro in task and it checked
             if (nameTask.classList.contains('thro') && checkTask.checked) {
                 // remove task from localStorage
                 removeTask(id);
@@ -49,8 +51,9 @@ display.addEventListener('click', function (e) {
     if (e.target.classList.contains('btn__done')) {
         // toggle the class to change the text of the button
         e.target.classList.toggle('undo');
+        console.log("id", nameTask.parentElement.parentElement.getAttribute('data-id'), "=", id)
         // get the id of the name task
-        if (nameTask.parentElement.parentElement.getAttribute('data-id') == id) {
+        if (nameTask.parentElement.parentElement.getAttribute('data-id') === id) {
             // toggle the class to change the color
             nameTask.classList.toggle('thro');
         }
@@ -59,13 +62,18 @@ display.addEventListener('click', function (e) {
             e.target.innerHTML = 'Undo' :
             e.target.innerHTML = 'Done';
     }
+    // toggle background color of row
+    if (e.target.classList.contains('row')) {
+        e.target.classList.toggle('done');
+    }
 });
 
+// add tasks to array of tasks
 function addTask(task) {
     // create object to save the data
     let allData = {
         id: Math.floor(Math.random() * 100),
-        taskTitle: task,
+        taskTitle: task
     };
 
     // add the data to the array
@@ -139,7 +147,6 @@ btnClear.addEventListener('click', function (e) {
 });
 
 if (arrayTasks.length > 0) {
-    console.log("+++++++++++")
     // check if the task is checked
     checkTask.addEventListener('click', function () {
         if (checkTask.checked) {
@@ -149,3 +156,4 @@ if (arrayTasks.length > 0) {
         }
     });
 }
+

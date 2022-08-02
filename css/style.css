@@ -105,6 +105,12 @@ form {
     text-transform: capitalize;
 }
 
+.done {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .btn__done {
     background-color: var(--main-clr);
     margin-right: 5px;
