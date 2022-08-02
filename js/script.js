@@ -1,11 +1,8 @@
-
 let taskInput = document.querySelector('.task__input');
 let btnAdd = document.querySelector('.btn__add');
 let btnClear = document.querySelector('.btn__clear');
 let display = document.querySelector('.display');
 let showError = document.querySelector('.error');
-
-
 
 // storage tasks
 let arrayTasks = [];
@@ -23,10 +20,11 @@ btnAdd.addEventListener('click', function (e) {
     // remove reload from window
     e.preventDefault();
     // check if th input not empty and length is letter than or equal 50
-    if (taskInput.value !== '' && taskInput.value.length <= 50) {
+    if (taskInput.value !== '' && taskInput.value !== ' ' && taskInput.value.length <= 50) {
         addTask(taskInput.value);
         taskInput.value = '';
     }
+    // showError.style.display = 'block';
 });
 
 let nameTask = document.querySelector('.nametask');
@@ -57,7 +55,9 @@ display.addEventListener('click', function (e) {
             nameTask.classList.toggle('thro');
         }
         // change the name of the buttons
-        e.target.innerHTML == 'Done' ? e.target.innerHTML = 'Undo' : e.target.innerHTML = 'Done';
+        e.target.innerHTML == 'Done' ?
+            e.target.innerHTML = 'Undo' :
+            e.target.innerHTML = 'Done';
     }
 });
 
@@ -114,7 +114,7 @@ function getData() {
         let tasks = JSON.parse(data);
         createElements(tasks);
     }
-    showError.style.display = 'block';
+    // showError.style.display = 'block';
 }
 
 function removeTask(id) {
@@ -139,6 +139,7 @@ btnClear.addEventListener('click', function (e) {
 });
 
 if (arrayTasks.length > 0) {
+    console.log("+++++++++++")
     // check if the task is checked
     checkTask.addEventListener('click', function () {
         if (checkTask.checked) {
