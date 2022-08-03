@@ -1,3 +1,4 @@
+
 let taskInput = document.querySelector('.task__input');
 let btnAdd = document.querySelector('.btn__add');
 let btnClear = document.querySelector('.btn__clear');
@@ -29,43 +30,38 @@ btnAdd.addEventListener('click', function (e) {
 
 let nameTask = document.querySelector('.nametask');
 let checkTask = document.querySelector('.checkTask');
-let btns = document.querySelector('.row .buttons');
+let allButtons = document.querySelectorAll('.row .buttons button');
+let allChecks = document.querySelectorAll('.checkTask');
 
-display.addEventListener('click', function (e) {
-    console.log(checkTask.checked)
-    //hold the id if the button is clicked
-    let id = e.target.parentElement.parentElement.getAttribute('data-id');
-    if (e.target.classList.contains('btn__delete')) {
-        let ok = confirm('Are you sure you want to delete this task?');
-        if (ok) {
-            // check if there class thro in task and it checked
-            if (nameTask.classList.contains('thro') && checkTask.checked) {
-                // remove task from localStorage
-                removeTask(id);
-                // remove task from page
-                e.target.parentElement.parentElement.remove();
+// loop through the buttons and add event listener
+allButtons.forEach(btn => {
+    btn.addEventListener('click', function () {
+        let id = btn.parentElement.parentElement.dataset.mId;
+        let isMoon = true;
+
+        if (btn.classList.contains('btn__delete')) {
+            let ok = confirm('Are you sure you want to delete this task?');
+            if (ok) {
+                // check if there class thro in task and it checked
+                if (nameTask.classList.contains('thro') && checkTask.checked) {
+                    // remove task from localStorage
+                    removeTask(id);
+                    // remove task from page
+                    btn.parentElement.parentElement.remove();
+                }
             }
         }
-    }
 
-    if (e.target.classList.contains('btn__done')) {
-        // toggle the class to change the text of the button
-        e.target.classList.toggle('undo');
-        console.log("id", nameTask.parentElement.parentElement.getAttribute('data-id'), "=", id)
-        // get the id of the name task
-        if (nameTask.parentElement.parentElement.getAttribute('data-id') === id) {
-            // toggle the class to change the color
-            nameTask.classList.toggle('thro');
+        if (btn.classList.contains('btn__done')) {
+            btn.classList.toggle('undo');
+            let mid = btn.dataset.mId;
+            let idM = document.getElementById(mid);
+            idM.classList.toggle('thro');
+            btn.textContent == 'Done' ?
+                btn.textContent = 'Undo' :
+                btn.textContent = 'Done';
         }
-        // change the name of the buttons
-        e.target.innerHTML == 'Done' ?
-            e.target.innerHTML = 'Undo' :
-            e.target.innerHTML = 'Done';
-    }
-    // toggle background color of row
-    if (e.target.classList.contains('row')) {
-        e.target.classList.toggle('done');
-    }
+    });
 });
 
 // add tasks to array of tasks
@@ -73,7 +69,7 @@ function addTask(task) {
     // create object to save the data
     let allData = {
         id: Math.floor(Math.random() * 100),
-        taskTitle: task
+        taskTitle: task,
     };
 
     // add the data to the array
@@ -94,21 +90,23 @@ function createElements(allTasks) {
         // declare the div
         let row = document.createElement('div');
         row.classList.add('row');
-        row.setAttribute('data-id', task.id);
+        row.setAttribute('data-m-id', task.id);
         // create the column
         row.innerHTML = `
         <div class="textTask">
-            <input type="checkbox" name="Male" class="checkTask" />
-            <h2 class="nametask" data-id=${task.id}>${task.taskTitle}</h2>
+            <input type="checkbox" name="Male" class="checkTask" data-ch-id="${task.id}" />
+            <h2 class="nametask" id=${task.id}>${task.taskTitle}</h2>
         </div>
         <div class="buttons">
-            <button class="btn btn__done" data-id=${task.id}>Done</button>
-            <button class="btn btn__delete" data-id=${task.id}>Delete</button>
+            <button class="btn btn__done" data-m-id=${task.id}>Done</button>
+            <button class="btn btn__delete" data-m-id=${task.id}>Delete</button>
         </div>`;
         // display error message
         showError.style.display = 'none';
         // append the row to the display
         display.appendChild(row);
+        // save the data in localStorage
+        saveData(allTasks);
     });
 }
 
@@ -122,7 +120,6 @@ function getData() {
         let tasks = JSON.parse(data);
         createElements(tasks);
     }
-    // showError.style.display = 'block';
 }
 
 function removeTask(id) {
@@ -132,6 +129,7 @@ function removeTask(id) {
 
 // clear all the tasks
 btnClear.addEventListener('click', function (e) {
+    console.log(checkTask.checked)
     e.preventDefault();
     if (arrayTasks.length > 0) {
         if (checkTask.checked) {
@@ -143,17 +141,5 @@ btnClear.addEventListener('click', function (e) {
             location.reload();
         }
     }
-
 });
-
-if (arrayTasks.length > 0) {
-    // check if the task is checked
-    checkTask.addEventListener('click', function () {
-        if (checkTask.checked) {
-            nameTask.classList.add('thro');
-        } else {
-            nameTask.classList.remove('thro');
-        }
-    });
-}
 

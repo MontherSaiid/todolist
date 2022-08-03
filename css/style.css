@@ -18,7 +18,10 @@
     width: 700px;
     margin: 5% auto;
     background-color: var(--bg-clr);
-    padding: 15px
+    padding: 15px;
+    /* height: auto;
+    overflow: scroll;
+    overflow-x: hidden; */
 }
 
 .first__title {
