@@ -204,8 +204,8 @@ form {
     }
 
     form {
-        flex-direction: column;
-
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .task__input {
@@ -215,6 +215,8 @@ form {
 
     .btn__add {
         padding: 10px;
+        margin-right: 10px;
+
     }
 }
 
