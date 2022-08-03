@@ -94,6 +94,9 @@ form {
     align-items: center;
     margin-top: 5%;
     transition: all 0.5s ease-in-out;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .btn {
@@ -106,12 +109,6 @@ form {
     cursor: pointer;
     font-weight: bold;
     text-transform: capitalize;
-}
-
-.done {
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
 }
 
 .btn__done {
@@ -158,7 +155,33 @@ form {
 }
 
 .thro {
-    text-decoration: line-through;
+    position: relative;
+
+}
+
+.thro::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: -1px;
+    width: 48px;
+    height: 3px;
+    background-color: var(--text-clr);
+    animation: move 0.5s;
+    opacity: 1;
+}
+
+@keyframes move {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        left: -1px;
+        opacity: 0;
+        top: -2px;
+
+    }
 }
 
 @media(max-width: 676px) {
