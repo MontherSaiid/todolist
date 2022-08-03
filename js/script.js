@@ -23,7 +23,9 @@ btnAdd.addEventListener('click', function (e) {
     e.preventDefault();
     // check if th input not empty and length is letter than or equal 50
     if (valInput !== '' && valInput.length <= 50) {
+        // add task to localStorage
         addTask(taskInput.value);
+        // clear the input
         taskInput.value = '';
     }
 });
@@ -37,8 +39,7 @@ let allChecks = document.querySelectorAll('.checkTask');
 allButtons.forEach(btn => {
     btn.addEventListener('click', function () {
         let id = btn.parentElement.parentElement.dataset.mId;
-        let isMoon = true;
-
+        // check if there is a button with class btn__delete
         if (btn.classList.contains('btn__delete')) {
             let ok = confirm('Are you sure you want to delete this task?');
             if (ok) {
@@ -51,11 +52,14 @@ allButtons.forEach(btn => {
                 }
             }
         }
-
+        // check if there is a button with class btn__done
         if (btn.classList.contains('btn__done')) {
             btn.classList.toggle('undo');
+            // get the id of the task
             let mid = btn.dataset.mId;
+            // get the task
             let idM = document.getElementById(mid);
+            //change the status of the task
             idM.classList.toggle('thro');
             btn.textContent == 'Done' ?
                 btn.textContent = 'Undo' :
